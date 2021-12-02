@@ -26,7 +26,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tnk-JS-uF9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1471" y="155"/>
+            <point key="canvasLocation" x="1501" y="151"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="ix4-AQ-KmK">
@@ -52,8 +52,33 @@
                                             <constraint firstAttribute="height" constant="75" id="ROg-6G-Mdg"/>
                                         </constraints>
                                     </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dSm-Tk-MTL">
+                                        <rect key="frame" x="43" y="200" width="328" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRI-sS-kEk" customClass="CustomButton" customModule="Contacts" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="82" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="envelope.fill" catalog="system" imagePlacement="top" title="mail"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPU-We-MD2" customClass="CustomButton" customModule="Contacts" customModuleProvider="target">
+                                                <rect key="frame" x="82" y="0.0" width="82" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="message.fill" catalog="system" imagePlacement="top" title="message"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQa-ek-LW6" customClass="CustomButton" customModule="Contacts" customModuleProvider="target">
+                                                <rect key="frame" x="164" y="0.0" width="82" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="phone.fill" catalog="system" imagePlacement="top" title="call"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffY-I4-Fv5" customClass="CustomButton" customModule="Contacts" customModuleProvider="target">
+                                                <rect key="frame" x="246" y="0.0" width="82" height="48"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="video.fill" catalog="system" imagePlacement="top" title="video"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondaryLabelColor"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstItem="Hl6-pQ-U0z" firstAttribute="top" secondItem="MNy-h6-fci" secondAttribute="bottom" constant="14" id="1s7-rF-qRa"/>
                                     <constraint firstAttribute="height" constant="273" id="6gd-u4-6nt"/>
@@ -65,46 +90,17 @@
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBZ-tC-9yq">
                                 <rect key="frame" x="0.0" y="227" width="414" height="669"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <connections>
                                     <segue destination="tvQ-fL-t4A" kind="embed" id="hQ7-vw-gHZ"/>
                                 </connections>
                             </containerView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSm-Tk-MTL">
-                                <rect key="frame" x="0.0" y="227" width="414" height="31"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRI-sS-kEk" customClass="CustomButton" customModule="Contacts" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="envelope.fill" catalog="system" imagePlacement="top" title="mail"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPU-We-MD2" customClass="CustomButton" customModule="Contacts" customModuleProvider="target">
-                                        <rect key="frame" x="103.5" y="0.0" width="103.5" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="message.fill" catalog="system" imagePlacement="top" title="message"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQa-ek-LW6" customClass="CustomButton" customModule="Contacts" customModuleProvider="target">
-                                        <rect key="frame" x="207" y="0.0" width="103.5" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="phone.fill" catalog="system" imagePlacement="top" title="call"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffY-I4-Fv5" customClass="CustomButton" customModule="Contacts" customModuleProvider="target">
-                                        <rect key="frame" x="310.5" y="0.0" width="103.5" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="video.fill" catalog="system" imagePlacement="top" title="video"/>
-                                    </button>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7zH-56-hys"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstItem="dSm-Tk-MTL" firstAttribute="top" secondItem="7zH-56-hys" secondAttribute="top" constant="183" id="0MI-Tj-AR0"/>
                             <constraint firstItem="iBZ-tC-9yq" firstAttribute="trailing" secondItem="7zH-56-hys" secondAttribute="trailing" id="0Wf-lB-KC9"/>
                             <constraint firstAttribute="bottom" secondItem="iBZ-tC-9yq" secondAttribute="bottom" id="13U-dm-p1T"/>
-                            <constraint firstItem="7zH-56-hys" firstAttribute="bottom" secondItem="dSm-Tk-MTL" secondAttribute="bottom" constant="604" id="8qt-Wu-2p9"/>
-                            <constraint firstItem="dSm-Tk-MTL" firstAttribute="trailing" secondItem="7zH-56-hys" secondAttribute="trailing" id="GQS-TD-WeP"/>
-                            <constraint firstItem="dSm-Tk-MTL" firstAttribute="leading" secondItem="C0z-1U-PhB" secondAttribute="leading" id="Uv7-5z-ECi"/>
                             <constraint firstItem="2Qz-zp-GMX" firstAttribute="leading" secondItem="7zH-56-hys" secondAttribute="leading" id="WDM-vG-JbY"/>
                             <constraint firstItem="iBZ-tC-9yq" firstAttribute="leading" secondItem="7zH-56-hys" secondAttribute="leading" id="bVC-Yl-ZC1"/>
                             <constraint firstItem="2Qz-zp-GMX" firstAttribute="top" secondItem="C0z-1U-PhB" secondAttribute="top" id="ekR-Ds-Sqv"/>
@@ -132,11 +128,8 @@
         <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="profile" width="504" height="504"/>
         <image name="video.fill" catalog="system" width="128" height="82"/>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

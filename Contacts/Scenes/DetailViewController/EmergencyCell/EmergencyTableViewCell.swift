@@ -9,6 +9,21 @@ import UIKit
 
 class EmergencyTableViewCell: UITableViewCell {
 
+    lazy var EmergencyLabel: UILabel = {
+        let width = contentView.bounds.width * 0.6
+        let height = contentView.bounds.height * 0.3
+        let x: CGFloat = 10
+        let y: CGFloat = 12
+        let frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        let label = UILabel(frame: frame)
+        let font = UIFont(name: "Arial", size: 17)
+        label.font = font
+        label.text = "Add to Emergency Contacts"
+        label.textColor = .systemBlue
+        return label
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -18,6 +33,15 @@ class EmergencyTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.addSubview(EmergencyLabel)
+        let margins = UIEdgeInsets(top: 5, left: 8, bottom: 10, right: 8)
+        contentView.frame = contentView.frame.inset(by: margins)
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 10
     }
     
 }
