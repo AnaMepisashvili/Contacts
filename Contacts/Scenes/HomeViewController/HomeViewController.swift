@@ -12,7 +12,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet private var tableView: UITableView!
     
-    @IBOutlet weak var imgView: UIImageView!
     
     var contactDict = [String : [String]]()
     
@@ -55,7 +54,7 @@ class HomeViewController: UIViewController {
                     Contact(name: "Vika Pilpani", image: "", mobile: "", notes: "", email: ""),
                     Contact(name: "Zaza Mgaloblishvili", image: "", mobile: "", notes: "", email: ""),
                     Contact(name: "Giorgi Saakashvili", image: "", mobile: "", notes: "", email: "")
-
+                    
     ]
     
     override func viewDidLoad() {
@@ -63,20 +62,13 @@ class HomeViewController: UIViewController {
         getSectionTitle()
         configTableView()
         setupNavigationBar()
-        
+    }
     
-          
-        imgView.layer.masksToBounds = true
-        imgView.layer.cornerRadius = 30
-        }
     
-       
-    
-
     @objc func buttonFunc () {
         print("button function")
     }
-
+    
     func setupNavigationBar(){
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(buttonFunc))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Group",  style: .plain, target: self, action: #selector(buttonFunc))
@@ -93,6 +85,7 @@ class HomeViewController: UIViewController {
         self.tableView.registerNib(class: ContactsTableViewCell.self)
         self.tableView.register(UINib(nibName: "ContactsHeaderFooterView", bundle: nil),
                                 forHeaderFooterViewReuseIdentifier: "ContactsHeaderFooterView")
+//        self.tableView.separatorColor = .clear
     }
     
     func getSectionTitle() -> [String]{
@@ -115,22 +108,36 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.sectionTitle.count
+        return self.sectionTitle.count + 1
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.contactDict[sectionTitle[section]]?.count ?? 0
+        if section == 0 {
+            return 1
+        }
+        return self.contactDict[sectionTitle[section - 1]]?.count ?? 0
+        
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ContactsHeaderFooterView") as? ContactsHeaderFooterView
-        headerView?.headerTitleLabel.text = self.sectionTitle[section]
-        return headerView
+        if section == 0 {
+            return headerView
+        } else {
+            headerView?.headerTitleLabel.text = self.sectionTitle[section - 1]
+            return headerView
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsTableViewCell", for: indexPath)
-        cell.textLabel?.text = self.contactDict[sectionTitle[indexPath.section]]?[indexPath.row]
-        return cell
+        if indexPath.section == 0 && indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MyProfileTableViewCell", for: indexPath)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsTableViewCell", for: indexPath)
+            cell.textLabel?.text = self.contactDict[sectionTitle[indexPath.section - 1]]?[indexPath.row]
+            return cell
+        }
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
