@@ -8,7 +8,7 @@
 import UIKit
 
 class PhoneTableViewCell: UITableViewCell {
-
+    
     lazy var phoneLabel: UILabel = {
         let width = contentView.bounds.width * 0.2
         let height = contentView.bounds.height * 0.3
@@ -22,7 +22,7 @@ class PhoneTableViewCell: UITableViewCell {
         label.textColor = .black
         return label
     }()
-
+    
     lazy var numberLabel: UILabel = {
         let width = contentView.bounds.width * 0.5
         let height = contentView.bounds.height * 0.3
@@ -36,16 +36,13 @@ class PhoneTableViewCell: UITableViewCell {
         label.textColor = .systemBlue
         return label
     }()
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override func layoutSubviews() {

@@ -10,14 +10,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ContactsHeaderFooterView" customModule="Contacts" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="126"/>
+            <rect key="frame" x="0.0" y="0.0" width="434" height="205"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SXU-wb-bdI">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="126"/>
+                    <rect key="frame" x="0.0" y="0.0" width="434" height="205"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slp-Qt-oC1">
-                            <rect key="frame" x="21" y="6" width="387" height="114"/>
+                            <rect key="frame" x="21" y="6" width="407" height="193"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" systemColor="systemGrayColor"/>
                             <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
             <connections>
                 <outlet property="headerTitleLabel" destination="slp-Qt-oC1" id="494-Qc-FMw"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="107.8125"/>
+            <point key="canvasLocation" x="146.37681159420291" y="81.361607142857139"/>
         </view>
     </objects>
     <resources>

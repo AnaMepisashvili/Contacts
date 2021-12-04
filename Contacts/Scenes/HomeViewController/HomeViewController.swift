@@ -14,9 +14,7 @@ class HomeViewController: UIViewController {
     
     
     var contactDict = [String : [String]]()
-    
     private var contactNames = [String]()
-    
     var sectionTitle = [String]()
     
     var contacts = [Contact(name: "Ana Gogia", image: "", mobile: "", notes: "", email: ""),
@@ -79,13 +77,11 @@ class HomeViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension
-        //        self.tableView.estimatedRowHeight = 44
-        
         self.tableView.registerNib(class: MyProfileTableViewCell.self)
         self.tableView.registerNib(class: ContactsTableViewCell.self)
+//        self.tableView.sectionHeaderTopPadding = 0.5
         self.tableView.register(UINib(nibName: "ContactsHeaderFooterView", bundle: nil),
                                 forHeaderFooterViewReuseIdentifier: "ContactsHeaderFooterView")
-//        self.tableView.separatorColor = .clear
     }
     
     func getSectionTitle() -> [String]{
@@ -109,7 +105,6 @@ extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sectionTitle.count + 1
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,8 +112,8 @@ extension HomeViewController: UITableViewDataSource {
             return 1
         }
         return self.contactDict[sectionTitle[section - 1]]?.count ?? 0
-        
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ContactsHeaderFooterView") as? ContactsHeaderFooterView
         if section == 0 {
@@ -132,6 +127,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 && indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyProfileTableViewCell", for: indexPath)
+//            cell.separatorInset = UIEdgeInsets(top: 0, left: cell.frame.size.width, bottom: 0, right: 0);
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsTableViewCell", for: indexPath)

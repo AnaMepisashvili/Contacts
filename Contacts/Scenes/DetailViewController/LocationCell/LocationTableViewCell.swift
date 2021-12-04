@@ -8,7 +8,7 @@
 import UIKit
 
 class LocationTableViewCell: UITableViewCell {
-
+    
     lazy var LocationLabel: UILabel = {
         let width = contentView.bounds.width * 0.6
         let height = contentView.bounds.height * 0.3
@@ -26,13 +26,10 @@ class LocationTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override func layoutSubviews() {
