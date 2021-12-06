@@ -24,25 +24,41 @@ class DetailViewController: UIViewController {
     
     private var lastContentOffset: CGFloat = 0
     
+    //MARK: - Variables
+    
+    var name: String?
+    var avatarImage: String?
+    var contact: Contact?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupView()
+        
         self.automaticallyAdjustsScrollViewInsets = false
-//        imgView.layer.masksToBounds = true
         imgView.layer.cornerRadius = imgView.bounds.width/2
         mailBtn.layer.cornerRadius = 10
         videobtn.layer.cornerRadius = 10
         callBtn.layer.cornerRadius = 10
         messageBtn.layer.cornerRadius = 10
-//
-//        if let scrollView = containerView.subviews.first as? UIScrollView {
-//            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        }
-//
+
         if var scrollViewContained = children.first as? ScrollViewContained {
             scrollViewContained.scrollDelegate = self
         }
-        
+    }
+    
+    //MARK: - Functions
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TableView" {
+            if let destination = segue.destination as? TableViewController {
+                destination.contact = contact
+            }
+        }
+    }
+    
+    private func setupView(){
+        nameLabel.text = name
+        imgView.image = UIImage(named: contact!.image)
     }
     
     @objc func buttonFunc() {
@@ -52,20 +68,20 @@ class DetailViewController: UIViewController {
     func setupNavigationBar(){
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(buttonFunc))
     }
+    
 }
 
 // MARK: - ScrollViewContaining Delegate
-extension DetailViewController: ScrollViewContainingDelegate {
-    
-    //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    //
-    //        let newTopConstraintConstant = -(scrollView.contentOffset.y + scrollView.contentInset.top)
-    //        headerViewTop.constant = min(0, max(-maxScrollAmount, newTopConstraintConstant))
-    //        let isAtTop = headerViewTop.constant == -maxScrollAmount
-    //        scrollViewScrolled(scrollView, didScrollToTop: isAtTop)
-    //
-    //    }
-    //
+extension DetailViewController: ScrollViewContainingDelegate {    
+//        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//
+//            let newTopConstraintConstant = -(scrollView.contentOffset.y + scrollView.contentInset.top)
+//            headerViewTop.constant = min(0, max(-maxScrollAmount, newTopConstraintConstant))
+//            let isAtTop = headerViewTop.constant == -maxScrollAmount
+//            scrollViewScrolled(scrollView, didScrollToTop: isAtTop)
+//
+//        }
+//
 //        func scrollViewScrolled(_ scrollView: UIScrollView, didScrollToTop isAtTop:Bool) {
 //            headerView.backgroundColor = isAtTop ? UIColor.systemGray5 : UIColor.systemGray5
 //        }

@@ -1,42 +1,32 @@
 //
-//  ViewController.swift
+//  DataSource.swift
 //  Contacts
 //
-//  Created by Ana Mepisashvili on 01.12.21.
+//  Created by Ana Mepisashvili on 06.12.21.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class DataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet private var tableView: UITableView!
-    
-    var viewModel: HomeVCViewModelProtocol!
     var sectionTitle = [String]()
     
+    var tableView: UITableView!
+    var viewModel: HomeVCViewModelProtocol!
+    var navController: UINavigationController!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configTableView()
-        setupViewModel()
-        setupNavigationBar()
-    }
-    
-    
-    @objc func buttonFunc () {
-        print("button function")
-    }
-    
-    func setupViewModel(){
-        viewModel = HomeVCViewModel()
+    init(with tableView: UITableView,
+         with viewModel: HomeVCViewModel,
+         with navController: UINavigationController) {
+        
+        super.init()
+        
+        self.tableView = tableView
+        self.viewModel = viewModel
+        self.navController = navController
+        
         sectionTitle = viewModel.getSectionTitle()
-    }
-    
-    func setupNavigationBar(){
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(buttonFunc))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Group",  style: .plain, target: self, action: #selector(buttonFunc))
-        self.title = "Contacts"
+        configTableView()
     }
     
     func configTableView() {
@@ -45,18 +35,10 @@ class HomeViewController: UIViewController {
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.registerNib(class: MyProfileTableViewCell.self)
         self.tableView.registerNib(class: ContactsTableViewCell.self)
-//        self.tableView.sectionHeaderTopPadding = 0.5
+        //        self.tableView.sectionHeaderTopPadding = 0.5
         self.tableView.register(UINib(nibName: "ContactsHeaderFooterView", bundle: nil),
                                 forHeaderFooterViewReuseIdentifier: "ContactsHeaderFooterView")
     }
-
-}
-
-extension HomeViewController: UITableViewDelegate {
-    
-}
-
-extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sectionTitle.count + 1
@@ -82,7 +64,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 && indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyProfileTableViewCell", for: indexPath)
-//            cell.separatorInset = UIEdgeInsets(top: 0, left: cell.frame.size.width, bottom: 0, right: 0);
+            //            cell.separatorInset = UIEdgeInsets(top: 0, left: cell.frame.size.width, bottom: 0, right: 0);
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsTableViewCell", for: indexPath)
@@ -97,8 +79,10 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "DetailViewController", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController")
-        navigationController?.pushViewController(viewController, animated: true)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        viewController.name = (viewModel.contactDict[sectionTitle[indexPath.section - 1]]?[indexPath.row])
+        viewController.contact = viewModel.contacts[indexPath.row]
+        navController.pushViewController(viewController, animated: true)
     }
+    
 }
-

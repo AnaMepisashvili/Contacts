@@ -45,7 +45,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Message">
                                                     <imageReference key="image" image="message.fill" catalog="system" symbolScale="medium"/>
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="10"/>
                                                 </buttonConfiguration>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvQ-cm-ftU" customClass="RoundedButton" customModule="Contacts" customModuleProvider="target">
@@ -54,7 +54,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Call">
                                                     <imageReference key="image" image="phone.fill" catalog="system" symbolScale="medium"/>
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="10"/>
                                                 </buttonConfiguration>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKz-Ho-hb2" customClass="RoundedButton" customModule="Contacts" customModuleProvider="target">
@@ -63,7 +63,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="video">
                                                     <imageReference key="image" image="video.fill" catalog="system" symbolScale="medium"/>
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="10"/>
                                                 </buttonConfiguration>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhd-7I-w2Q" customClass="RoundedButton" customModule="Contacts" customModuleProvider="target">
@@ -72,7 +72,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="mail">
                                                     <imageReference key="image" image="envelope.fill" catalog="system" symbolScale="medium"/>
-                                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="10"/>
                                                 </buttonConfiguration>
                                             </button>
                                         </subviews>
@@ -99,7 +99,7 @@
                                 <rect key="frame" x="0.0" y="269" width="414" height="593"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="V9B-KE-XZK" kind="embed" id="XFd-O4-ndF"/>
+                                    <segue destination="V9B-KE-XZK" kind="embed" identifier="TableView" id="XFd-O4-ndF"/>
                                 </connections>
                             </containerView>
                         </subviews>

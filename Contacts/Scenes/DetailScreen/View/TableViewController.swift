@@ -10,6 +10,8 @@ import UIKit
 // MARK: - TableView Controller, ScrollViewContained
 class TableViewController: UITableViewController, ScrollViewContained {
     
+    var contact: Contact?
+    
     weak var scrollDelegate: ScrollViewContainingDelegate?
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollDelegate?.scrollViewDidScroll(scrollView)
@@ -49,12 +51,13 @@ class TableViewController: UITableViewController, ScrollViewContained {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell
+        var cell: UITableViewCell?
         switch indexPath.row {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "PhoneTableViewCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PhoneTableViewCell", for: indexPath) as? PhoneTableViewCell
+            cell!.configure(contact: contact!)
         case 1:
-            cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "ShareTableViewCell", for: indexPath)
         case 3:
@@ -66,9 +69,9 @@ class TableViewController: UITableViewController, ScrollViewContained {
         default:
             return UITableViewCell()
         }
-        cell.selectionStyle = .none
-        cell.backgroundColor = .clear
-        return cell
+        (cell ?? UITableViewCell()).selectionStyle = .none
+        (cell ?? UITableViewCell()).backgroundColor = .clear
+        return (cell ?? UITableViewCell())
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
