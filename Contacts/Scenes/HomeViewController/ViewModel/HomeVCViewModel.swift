@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol HomeVCModelProtocol {
+protocol HomeVCViewModelProtocol {
     var contacts: [Contact] {get set}
     var sectionTitle: [String] {get set}
     var contactDict: [String: [String]] {get set}
     func getSectionTitle() -> [String]
 }
 
-class HomeVCModel: HomeVCModelProtocol {
+class HomeVCViewModel: HomeVCViewModelProtocol {
     var contactDict = [String : [String]]()
     private var contactNames = [String]()
     var sectionTitle = [String]()

@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet private var tableView: UITableView!
     
-    var viewModel: HomeVCModelProtocol!
+    var viewModel: HomeVCViewModelProtocol!
     var sectionTitle = [String]()
     
     
@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     }
     
     func setupViewModel(){
-        viewModel = HomeVCModel()
+        viewModel = HomeVCViewModel()
         sectionTitle = viewModel.getSectionTitle()
     }
     
