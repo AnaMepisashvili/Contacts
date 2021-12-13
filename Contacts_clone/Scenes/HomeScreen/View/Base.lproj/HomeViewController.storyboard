@@ -11,7 +11,7 @@
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Contacts_clone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,17 +35,17 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b2x-YC-eN0" secondAttribute="trailing" constant="20" id="2Dv-mB-ZMj"/>
                             <constraint firstItem="c9w-vl-QcR" firstAttribute="top" secondItem="PXM-bi-U4R" secondAttribute="bottom" id="8f4-ud-osf"/>
                             <constraint firstItem="c9w-vl-QcR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EXJ-Vo-x4l"/>
+                            <constraint firstItem="b2x-YC-eN0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="11" id="Q0E-VN-PPH"/>
                             <constraint firstItem="PXM-bi-U4R" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QKw-RV-9Aa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b2x-YC-eN0" secondAttribute="trailing" constant="20" id="azg-99-niU"/>
-                            <constraint firstItem="b2x-YC-eN0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="367" id="bnH-WM-Xo3"/>
                             <constraint firstItem="c9w-vl-QcR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cCu-wg-OuW"/>
-                            <constraint firstItem="b2x-YC-eN0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="11" id="cIR-DC-esO"/>
                             <constraint firstItem="PXM-bi-U4R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dYz-RK-avM"/>
                             <constraint firstItem="PXM-bi-U4R" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eeo-ef-2Tw"/>
+                            <constraint firstItem="b2x-YC-eN0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="367" id="gQD-1o-ofJ"/>
                             <constraint firstItem="c9w-vl-QcR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="mr5-Cd-1DO"/>
-                            <constraint firstItem="c9w-vl-QcR" firstAttribute="top" secondItem="b2x-YC-eN0" secondAttribute="bottom" constant="11" id="xeC-so-OMl"/>
+                            <constraint firstItem="c9w-vl-QcR" firstAttribute="top" secondItem="b2x-YC-eN0" secondAttribute="bottom" constant="11" id="rSE-UC-wnN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xBx-NP-fnY"/>

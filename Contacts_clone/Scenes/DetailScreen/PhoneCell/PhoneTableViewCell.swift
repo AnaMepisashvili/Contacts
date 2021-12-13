@@ -37,18 +37,10 @@ class PhoneTableViewCell: UITableViewCell {
         return label
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     func configure(contact: Contact) {
         numberLabel.text = contact.mobile
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.addSubview(phoneLabel)
@@ -56,6 +48,7 @@ class PhoneTableViewCell: UITableViewCell {
         let margins = UIEdgeInsets(top: 5, left: 8, bottom: 10, right: 8)
         contentView.frame = contentView.frame.inset(by: margins)
         contentView.backgroundColor = .white
+        backgroundColor = .clear
         contentView.layer.cornerRadius = 10
     }
 }

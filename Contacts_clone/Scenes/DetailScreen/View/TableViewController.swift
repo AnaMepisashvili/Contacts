@@ -30,13 +30,13 @@ class TableViewController: UITableViewController, ScrollViewContained {
         tableView.register(EmergencyTableViewCell.self, forCellReuseIdentifier: "EmergencyTableViewCell")
         tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: "LocationTableViewCell")
         tableView.register(BlockTableViewCell.self, forCellReuseIdentifier: "BlockTableViewCell")
-//        tableView.register(ShareTableViewCell.self, forCellReuseIdentifier: "ShareTableViewCell")
+        //        tableView.register(ShareTableViewCell.self, forCellReuseIdentifier: "ShareTableViewCell")
         let nib = UINib(nibName: "ShareTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ShareTableViewCell")
-
+        
         //        let nib1 = UINib(nibName: "PhoneTableViewCell", bundle: nil)
         //        let nib2 = UINib(nibName: "NotesTableViewCell", bundle: nil)
-               
+        
         //        let nib4 = UINib(nibName: "EmergencyTableViewCell", bundle: nil)
         //        let nib5 = UINib(nibName: "LocationTableViewCell", bundle: nil)
         //        let nib6 = UINib(nibName: "BlockTableViewCell", bundle: nil)
@@ -49,13 +49,13 @@ class TableViewController: UITableViewController, ScrollViewContained {
         
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhoneTableViewCell", for: indexPath) as? PhoneTableViewCell
             cell!.configure(contact: contact!)
+            cell?.backgroundColor = .clear
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell
         case 2:

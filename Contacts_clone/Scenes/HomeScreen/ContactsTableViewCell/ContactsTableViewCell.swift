@@ -21,7 +21,7 @@ class ContactsTableViewCell: UITableViewCell {
         guard let contact = contact else {
             return
         }
-        contactLabel.text = contact.firstName + " " + contact.lastName
+        contactLabel.text = (contact.firstName ?? "") + " " + (contact.lastName ?? "")
     }
     
 }

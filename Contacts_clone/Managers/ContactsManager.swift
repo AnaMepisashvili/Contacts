@@ -1,14 +1,14 @@
 //
-//  ContactsManager.swift
+//  BasePersistentProtocol.swift
 //  Contacts_clone
 //
-//  Created by Ana Mepisashvili on 08.12.21.
+//  Created by Ana Mepisashvili on 09.12.21.
 //
 
 import Foundation
 import Contacts
 
-class ContactsManager {
+class ContactsManager: BasePersistentProtocol {
     static let shared = ContactsManager()
     
     private init() {}
@@ -16,49 +16,69 @@ class ContactsManager {
     var contactStore = CNContactStore()
     var contacts = [Contact]()
     var setContacts: (([Contact]) -> Void)?
-        
+    private var coreDataManager: ModelManager = ModelManager(with: PersistantManager())
+    
     func handleAuthorizatignStatus() {
         contactStore.requestAccess(for: .contacts) { (success, error) in
             if success {
                 print("Auth Success")
-                self.fetchContacts()
+                self.loadContactsIntoCoreData()
             } else {
                 print("error \(String(describing: error))")
             }
         }
     }
     
-    private func getContacts() -> [Contact] {
-        let contacts = fetchContacts().sorted { $0.firstName < $1.firstName }
-        return contacts
-    }
-    
-    func getHeaders() -> [String] {
-        let contacts = fetchContacts().sorted { $0.firstName < $1.firstName }
-        let alphas = contacts.compactMap { $0.firstName.first }
-        return Array(Set(alphas)).sorted().map { String($0) }
-    }
-    
-    func getDict(headers: [String]) -> [String: [Contact]] {
-        var resultDict: [String: [Contact]] = [:]
-        for header in headers {
-            resultDict[header] = getContacts().filter { $0.firstName.first == header.first }
+    private func getContacts(completion: @escaping ([Contact]) -> Void) {
+        coreDataManager.getContactsFromCoreData { result in
+            switch result {
+            case .success(let data):
+                let contacts = data.sorted { $0.firstName ?? "" < $1.firstName ?? "" }
+                completion(contacts)
+            case .failure(let error):
+                print(error)
+                completion([])
+            }
         }
-        return resultDict
     }
     
-    func fetchContacts() -> [Contact] {
+    func getHeaders(completion: @escaping ([String]) -> Void) {
+        coreDataManager.getContactsFromCoreData { result in
+            switch result {
+            case .success(let data):
+                let contacts = data.sorted { $0.firstName ?? "" < $1.firstName ?? "" }
+                let alphas = contacts.compactMap { ($0.firstName ?? "").first }
+                completion(Array(Set(alphas)).sorted().map { String($0) })
+            case .failure(let error):
+                print(error)
+                completion([])
+            }
+        }
+    }
+    
+    func getDict(headers: [String], completion: @escaping ([String: [Contact]]) -> Void) {
+        getContacts { contacts in
+            var resultDict: [String: [Contact]] = [:]
+            for header in headers {
+                resultDict[header] = contacts.filter { ($0.firstName ?? "").first?.lowercased() == header.first?.lowercased() }
+            }
+            completion(resultDict)
+        }
+        
+    }
+    
+    func loadContactsIntoCoreData()  {
         let key = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey] as [CNKeyDescriptor]
         let request = CNContactFetchRequest(keysToFetch: key)
-        var result: [Contact] = []
-        try! contactStore.enumerateContacts(with: request) { (contact, stoppingPointer) in
-            let name = contact.givenName
-            let familyName = contact.familyName
-            let number = contact.phoneNumbers.first?.value.stringValue
-            let contactToAppend = Contact(firstName: name, lastName: familyName, image: "", mobile: number ?? "")
-            result.append(contactToAppend)
+        try! contactStore.enumerateContacts(with: request) { [weak self] (contact, stoppingPointer) in
+            self?.coreDataManager.isInCoreData(model: contact) { [weak self] isInCoreData in
+                
+                if !isInCoreData {
+                    self?.coreDataManager.addContactToCoreData(usingModel: contact)
+                }
+            }
         }
-//        setContacts?(contacts)
-        return result
     }
 }
+
+
