@@ -271,12 +271,7 @@
 			children = (
 				2B861067275F542100437ECD /* ViewModel */,
 				2B77E05B275E0C2E006D3A09 /* View */,
-				2BE23C1C2758F61600A77B07 /* PhoneCell */,
-				2BE23C1D2758F62800A77B07 /* NotesCell */,
-				2BE23C1E2758F63500A77B07 /* ShareCell */,
-				2BE23C1F2758F65000A77B07 /* EmergencyCell */,
-				2BE23C202758F66600A77B07 /* LocationCell */,
-				2B7E2F5727592D9200BDE2F6 /* Block Cell */,
+				2BB021C027687D7B00A87549 /* Cells */,
 			);
 			path = DetailScreen;
 			sourceTree = "<group>";
@@ -294,6 +289,19 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2BB021C027687D7B00A87549 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2BE23C1C2758F61600A77B07 /* PhoneCell */,
+				2BE23C1D2758F62800A77B07 /* NotesCell */,
+				2BE23C1E2758F63500A77B07 /* ShareCell */,
+				2BE23C1F2758F65000A77B07 /* EmergencyCell */,
+				2BE23C202758F66600A77B07 /* LocationCell */,
+				2B7E2F5727592D9200BDE2F6 /* Block Cell */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		2BE23C1C2758F61600A77B07 /* PhoneCell */ = {

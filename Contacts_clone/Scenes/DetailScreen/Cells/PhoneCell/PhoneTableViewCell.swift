@@ -37,6 +37,7 @@ class PhoneTableViewCell: UITableViewCell {
         return label
     }()
     
+
     func configure(contact: Contact) {
         numberLabel.text = contact.mobile
     }

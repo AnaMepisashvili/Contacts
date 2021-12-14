@@ -8,9 +8,12 @@
 import UIKit
 import CoreData
 
+// MARK: - Protocol
+
 protocol BasePersistentProtocol: AnyObject {
     var context: NSManagedObjectContext? { get }
 }
+// MARK: - Extension
 
 extension BasePersistentProtocol {
     var context: NSManagedObjectContext? {

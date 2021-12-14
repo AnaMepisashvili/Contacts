@@ -8,7 +8,8 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
+    //MARK: - Outlets
+
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var mailBtn:  UIButton!
     @IBOutlet weak var videobtn: UIButton!
@@ -24,7 +25,7 @@ class DetailViewController: UIViewController {
     
     private var lastContentOffset: CGFloat = 0
     
-    //MARK: - Variables
+    //MARK: - Properties
     
     var name: String?
     var avatarImage: String?
@@ -50,7 +51,6 @@ class DetailViewController: UIViewController {
         }
         
     }
-    
     //MARK: - Functions
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,7 +74,6 @@ class DetailViewController: UIViewController {
     }
     
 }
-
 // MARK: - ScrollViewContaining Delegate
 
 extension DetailViewController: ScrollViewContainingDelegate {    
@@ -90,7 +89,6 @@ extension DetailViewController: ScrollViewContainingDelegate {
         }
     }
 }
-
 // MARK: - Protocols
 
 protocol ScrollViewContainingDelegate: NSObject {

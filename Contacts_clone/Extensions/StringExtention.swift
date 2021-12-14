@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - UIImage Extension
+
 extension String {
     var image: UIImage? {
         let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -29,4 +31,9 @@ extension String {
         }
         return nil
     }
+    var startsWithAsciiLetter: Bool { first?.isAsciiLetter == true }
+}
+
+extension Character {
+    var isAsciiLetter: Bool { "A"..."Z" ~= self || "a"..."z" ~= self }
 }

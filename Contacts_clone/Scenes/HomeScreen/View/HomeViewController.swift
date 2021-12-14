@@ -9,9 +9,12 @@ import UIKit
 import Contacts
 
 class HomeViewController: UIViewController {
-    
+    //MARK: - Outlets
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet private var tableView: UITableView!
+    
+    //MARK: - Properties
     
     var viewModel: HomeVCViewModelProtocol!
     var manager = ContactsManager.shared
@@ -22,6 +25,7 @@ class HomeViewController: UIViewController {
     override func loadView() {
         super.loadView()
         manager.loadContactsIntoCoreData()
+//        manager.coreDataManager.clearContactsInCoreData()
     }
     
     override func viewDidLoad() {
@@ -29,12 +33,19 @@ class HomeViewController: UIViewController {
         setupViewModel()
         setupNavigationBar()
         configTableView()
-        
+        manager.coreDataManager.getContactsFromCoreData { result in
+            switch result {
+            case.success(let contacts):
+                print(contacts)
+            case.failure(let error):
+                print(error)
+            }
+        }
         setHeaders { [weak self] in
             self?.setDict()
-            print(self?.dict)
         }
     }
+    //MARK: - Functions
     
     private func setHeaders(completion: @escaping () -> Void) {
         manager.getHeaders { [weak self] headers in
@@ -78,6 +89,7 @@ class HomeViewController: UIViewController {
         self.title = "Contacts"
     }
 }
+// MARK: - UITableView Extension
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -122,7 +134,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        headers
+        ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"]
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

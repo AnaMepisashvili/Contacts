@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import CoreData
 
+// MARK: - Protocol Extension
+
 protocol PersistentManagerProtocol: BasePersistentProtocol {
     func create<T: NSManagedObject>(with object: T, completion: @escaping ((Bool) -> Void))
     func read<T: NSManagedObject>(with object: T, using predicate: NSPredicate?, completion: @escaping ((Bool) -> Void))
@@ -26,10 +28,10 @@ final class PersistantManager: PersistentManagerProtocol {
             print(error)
         }
     }
+    // MARK: - Functions
     
     func read<T>(with object: T, using predicate: NSPredicate?, completion: @escaping ((Bool) -> Void)) where T : NSManagedObject {
         guard let context = context else { return }
-        
         do {
             let request = NSFetchRequest<NSManagedObject>(entityName: "Contact")
             request.predicate = predicate
@@ -43,7 +45,6 @@ final class PersistantManager: PersistentManagerProtocol {
     
     func update<T>(with object: T, using predicate: NSPredicate?, completion: @escaping (Bool) -> Void) where T: NSManagedObject {
         guard let context = context else { return }
-        
         do {
             let request = NSFetchRequest<NSManagedObject>(entityName: "Contact")
             request.predicate = predicate

@@ -11,12 +11,16 @@ import Contacts
 class ContactsManager: BasePersistentProtocol {
     static let shared = ContactsManager()
     
+    //MARK: - Properties
+    
     private init() {}
     
     var contactStore = CNContactStore()
     var contacts = [Contact]()
     var setContacts: (([Contact]) -> Void)?
-    private var coreDataManager: ModelManager = ModelManager(with: PersistantManager())
+    var coreDataManager: ModelManager = ModelManager(with: PersistantManager())
+    
+    // MARK: - Functions
     
     func handleAuthorizatignStatus() {
         contactStore.requestAccess(for: .contacts) { (success, error) in
@@ -47,7 +51,16 @@ class ContactsManager: BasePersistentProtocol {
             switch result {
             case .success(let data):
                 let contacts = data.sorted { $0.firstName ?? "" < $1.firstName ?? "" }
-                let alphas = contacts.compactMap { ($0.firstName ?? "").first }
+                let alphas = contacts.compactMap {($0.firstName ?? "").first}
+//                var alphas: [String] = []
+//                contacts.forEach {
+//                    if !$0.firstName!.startsWithAsciiLetter {
+//                        alphas.append("#")
+//                    }else{
+//                        let resultString = String(($0.firstName ?? "").first!)
+//                        alphas.append(resultString)
+//                    }
+//                }
                 completion(Array(Set(alphas)).sorted().map { String($0) })
             case .failure(let error):
                 print(error)
@@ -71,12 +84,8 @@ class ContactsManager: BasePersistentProtocol {
         let key = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey] as [CNKeyDescriptor]
         let request = CNContactFetchRequest(keysToFetch: key)
         try! contactStore.enumerateContacts(with: request) { [weak self] (contact, stoppingPointer) in
-            self?.coreDataManager.isInCoreData(model: contact) { [weak self] isInCoreData in
-                
-                if !isInCoreData {
-                    self?.coreDataManager.addContactToCoreData(usingModel: contact)
-                }
-            }
+            
+            self?.coreDataManager.updateCoreData(model: contact)
         }
     }
 }

@@ -6,8 +6,8 @@
 //
 
 import UIKit
-
 // MARK: - TableView Controller, ScrollViewContained
+
 class TableViewController: UITableViewController, ScrollViewContained {
     
     var contact: Contact?
@@ -53,9 +53,8 @@ class TableViewController: UITableViewController, ScrollViewContained {
         var cell: UITableViewCell?
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PhoneTableViewCell", for: indexPath) as? PhoneTableViewCell
-            cell!.configure(contact: contact!)
-            cell?.backgroundColor = .clear
+            cell = tableView.dequeueReusableCell(withIdentifier: "PhoneTableViewCell", for: indexPath) as? PhoneTableViewCell
+            (cell as? PhoneTableViewCell)?.configure(contact: contact!)
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell
         case 2:
@@ -69,9 +68,11 @@ class TableViewController: UITableViewController, ScrollViewContained {
         default:
             return UITableViewCell()
         }
-        (cell ?? UITableViewCell()).selectionStyle = .none
-        (cell ?? UITableViewCell()).backgroundColor = .clear
-        return (cell ?? UITableViewCell())
+        
+        cell?.selectionStyle = .none
+        cell?.contentView.backgroundColor = .clear
+        cell?.backgroundColor = .clear
+        return cell!
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -89,7 +90,7 @@ class TableViewController: UITableViewController, ScrollViewContained {
         case 5 :
             return 60
         default:
-            return UIScreen.main.bounds.height / 15
+            return .zero
         }
     }
     

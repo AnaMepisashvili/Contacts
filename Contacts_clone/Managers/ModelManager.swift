@@ -10,32 +10,29 @@ import CoreData
 import Contacts
 
 protocol ModelManagerProtocol: BasePersistentProtocol {
-    //func uploadModels(usingModel model: Model, completion: @escaping (Bool) -> Void)
     func getContactsFromCoreData(completion: @escaping (Result<[Contact], Error>) -> Void)
     
     init(with persistent: PersistentManagerProtocol)
-    
 }
 
 final class ModelManager: ModelManagerProtocol {
+    //MARK: - Properties
     
     var persistent: PersistentManagerProtocol!
-    
     var modelObject: NSManagedObject? {
         guard let context = context else { return nil }
         guard let description = NSEntityDescription.entity(forEntityName: "Contact", in: context) else { return nil }
         let obj = NSManagedObject(entity: description, insertInto: context)
         return obj
     }
+    // MARK: - Functions
     
     func addContactToCoreData(usingModel model: CNContact) {
         guard let context = context else { return }
-        
         let model2 = Contact(context: context)
         model2.firstName = model.givenName
         model2.lastName = model.familyName
         model2.mobile = model.phoneNumbers.first?.value.stringValue
-        
         do {
             try context.save()
         }
@@ -45,21 +42,38 @@ final class ModelManager: ModelManagerProtocol {
         }
     }
     
-    func isInCoreData(model: CNContact, completion: @escaping (Bool) -> Void) {
+    func updateCoreData(model: CNContact) {
         guard let context = context else { return }
+        let contact = Contact(context: context)
+        contact.firstName = model.givenName
+        contact.lastName = model.familyName
+        contact.mobile = model.phoneNumbers.first?.value.stringValue
+        
+        let fetchRequest:NSFetchRequest<Contact> = NSFetchRequest.init(entityName: "Contact")
+        let predicate = NSCompoundPredicate(
+            type: .and,
+            subpredicates: [
+                NSPredicate(format: "firstName = %@", "\(model.givenName)"),
+                NSPredicate(format: "lastName = %@", "\(model.familyName)"),
+                NSPredicate(format: "mobile = %@", "\(model.phoneNumbers.first?.value.stringValue)")
+            ]
+        )
+        fetchRequest.predicate = predicate
         do {
-            let request = NSFetchRequest<Contact>(entityName: "Contact")
-            let models = try context.fetch(request)
-            for contact in models {
-                if contact.firstName == model.givenName && contact.lastName == model.familyName && contact.mobile == model.phoneNumbers.first?.value.stringValue {
-                    completion(true)
-                    return
+            let object = try context.fetch(fetchRequest)
+            if object.count == 1 {
+                let objectUpdate = object.first as! NSManagedObject
+                objectUpdate.setValue(model.givenName, forKey: "firstName")
+                objectUpdate.setValue(model.familyName, forKey: "lastName")
+                objectUpdate.setValue(model.phoneNumbers.first?.value.stringValue, forKey: "mobile")
+                do {
+                    try context.save()
+                } catch {
+                    print(error)
                 }
             }
-            completion(false)
         } catch {
             print(error)
-            return
         }
     }
     
@@ -84,6 +98,7 @@ final class ModelManager: ModelManagerProtocol {
             entities.forEach {
                 context.delete($0)
             }
+            try context.save()
         } catch {
             print(error)
         }
@@ -92,6 +107,5 @@ final class ModelManager: ModelManagerProtocol {
     init(with persistent: PersistentManagerProtocol) {
         self.persistent = persistent
     }
-    
 }
 

@@ -8,6 +8,8 @@
 import Contacts
 import Foundation
 
+// MARK: - Protocol
+
 protocol HomeVCViewModelProtocol {
     var contactsDict: [String: Contact] {get set}
     var sectionTitle: [String] {get set}
