@@ -6,6 +6,15 @@
 //
 
 import UIKit
+
+enum Cell: String {
+    case phoneCell = "PhoneTableViewCell"
+    case notesCell = "NotesTableViewCell"
+    case shareCell = "ShareTableViewCell"
+    case emergencyCell = "EmergencyTableViewCell"
+    case locationCell = "LocationTableViewCell"
+    case blockCell = "BlockTableViewCell"
+}
 // MARK: - TableView Controller, ScrollViewContained
 
 class TableViewController: UITableViewController, ScrollViewContained {
@@ -53,18 +62,18 @@ class TableViewController: UITableViewController, ScrollViewContained {
         var cell: UITableViewCell?
         switch indexPath.row {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "PhoneTableViewCell", for: indexPath) as? PhoneTableViewCell
+            cell = tableView.dequeueReusableCell(withIdentifier: Cell.phoneCell.rawValue, for: indexPath) as? PhoneTableViewCell
             (cell as? PhoneTableViewCell)?.configure(contact: contact!)
         case 1:
-            cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableViewCell", for: indexPath) as? NotesTableViewCell
+            cell = tableView.dequeueReusableCell(withIdentifier: Cell.notesCell.rawValue, for: indexPath) as? NotesTableViewCell
         case 2:
-            cell = tableView.dequeueReusableCell(withIdentifier: "ShareTableViewCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: Cell.shareCell.rawValue, for: indexPath)
         case 3:
-            cell = tableView.dequeueReusableCell(withIdentifier: "EmergencyTableViewCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: Cell.emergencyCell.rawValue, for: indexPath)
         case 4:
-            cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: Cell.locationCell.rawValue, for: indexPath)
         case 5:
-            cell = tableView.dequeueReusableCell(withIdentifier: "BlockTableViewCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: Cell.blockCell.rawValue, for: indexPath)
         default:
             return UITableViewCell()
         }

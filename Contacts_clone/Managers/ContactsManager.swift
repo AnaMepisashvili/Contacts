@@ -77,7 +77,6 @@ class ContactsManager: BasePersistentProtocol {
             }
             completion(resultDict)
         }
-        
     }
     
     func loadContactsIntoCoreData()  {

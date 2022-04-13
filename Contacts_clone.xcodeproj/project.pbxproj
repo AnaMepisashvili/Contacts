@@ -156,8 +156,8 @@
 			children = (
 				2B7CB748275756CE00842C0A /* App */,
 				2B7CB7682757B43A00842C0A /* Resources */,
-				2B144BDB2760D40800750D10 /* Managers */,
 				2B7CB75827576BE300842C0A /* Extensions */,
+				2B144BDB2760D40800750D10 /* Managers */,
 				2B7CB75027575A1F00842C0A /* Model */,
 				2B7CB749275756D900842C0A /* Scenes */,
 				2B7CB742275756B600842C0A /* Info.plist */,
@@ -276,12 +276,12 @@
 			path = DetailScreen;
 			sourceTree = "<group>";
 		};
-		2B7E2F5727592D9200BDE2F6 /* Block Cell */ = {
+		2B7E2F5727592D9200BDE2F6 /* BlockCell */ = {
 			isa = PBXGroup;
 			children = (
 				2B7E2F5827592DA500BDE2F6 /* BlockTableViewCell.swift */,
 			);
-			path = "Block Cell";
+			path = BlockCell;
 			sourceTree = "<group>";
 		};
 		2B861067275F542100437ECD /* ViewModel */ = {
@@ -299,7 +299,7 @@
 				2BE23C1E2758F63500A77B07 /* ShareCell */,
 				2BE23C1F2758F65000A77B07 /* EmergencyCell */,
 				2BE23C202758F66600A77B07 /* LocationCell */,
-				2B7E2F5727592D9200BDE2F6 /* Block Cell */,
+				2B7E2F5727592D9200BDE2F6 /* BlockCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
